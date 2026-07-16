@@ -1,0 +1,621 @@
+/* ============================================================
+   Base & Layout
+   ============================================================ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  background: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.leftSide {
+  flex: 0 0 60%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.rightSide {
+  flex: 0 0 40%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+}
+
+@media (max-width: 768px) {
+  .leftSide {
+    display: none;
+  }
+
+  .rightSide {
+    flex: 1 1 100%;
+    background: linear-gradient(160deg, #f0f4ff 0%, #ffffff 50%, #fff5f5 100%);
+  }
+}
+
+/* ============================================================
+   Left Side - Background & Gradient
+   ============================================================ */
+
+.leftBackground {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+}
+
+.gradientBlob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.08) 0%, transparent 70%);
+}
+
+/* ============================================================
+   Floating Glass Cards
+   ============================================================ */
+
+.floatingCards {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.glassCard {
+  position: absolute;
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  background: rgba(255, 255, 255, 0.6);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--glass-radius);
+  overflow: hidden;
+}
+
+.card1 {
+  top: 12%;
+  left: 10%;
+  width: 340px;
+  animation: floatCard1 4s ease-in-out infinite alternate;
+  animation-delay: 0s;
+}
+
+.card2 {
+  top: 35%;
+  right: 15%;
+  width: 300px;
+  animation: floatCard2 5s ease-in-out infinite alternate;
+  animation-delay: 1.5s;
+}
+
+.card3 {
+  bottom: 18%;
+  left: 25%;
+  width: 260px;
+  animation: floatCard3 6s ease-in-out infinite alternate;
+  animation-delay: 3s;
+}
+
+@keyframes floatCard1 {
+  0% {
+    transform: rotate(-2deg) translateY(0);
+  }
+  100% {
+    transform: rotate(-2deg) translateY(-12px);
+  }
+}
+
+@keyframes floatCard2 {
+  0% {
+    transform: rotate(3deg) translateY(0);
+  }
+  100% {
+    transform: rotate(3deg) translateY(-8px);
+  }
+}
+
+@keyframes floatCard3 {
+  0% {
+    transform: rotate(-1deg) translateY(0);
+  }
+  100% {
+    transform: rotate(-1deg) translateY(-15px);
+  }
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: calc(var(--glass-radius) - 2px);
+}
+
+.leftOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 48px;
+  pointer-events: none;
+}
+
+.leftTagline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  max-width: 280px;
+}
+
+.leftTaglineAccent {
+  color: var(--color-primary);
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .leftTagline {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Form Panel (Login & Forgot Password)
+   ============================================================ */
+
+.formPanel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  opacity: 0;
+  transform: translateX(30px);
+  pointer-events: none;
+  transition: opacity 150ms ease, transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.formPanelActive {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.formPanelTransitioning {
+  opacity: 0.5;
+}
+
+.formContent {
+  width: 100%;
+  max-width: 380px;
+}
+
+/* ============================================================
+   Logo
+   ============================================================ */
+
+.logo {
+  margin-bottom: 40px;
+}
+
+.logoText {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+
+.header {
+  margin-bottom: 32px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.subtext {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Form
+   ============================================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.fieldGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+/* ============================================================
+   Input Fields
+   ============================================================ */
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 102, 255, 0.15);
+  border-radius: 12px;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12);
+}
+
+.inputError {
+  border-color: var(--color-alert);
+}
+
+.inputError:focus {
+  border-color: var(--color-alert);
+  box-shadow: 0 0 0 4px rgba(255, 59, 48, 0.12);
+}
+
+.inputWithIcon {
+  padding-left: 48px;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+/* Password Toggle */
+
+.passwordWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.passwordWrapper .input {
+  padding-right: 50px;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.togglePassword:hover {
+  color: var(--color-primary);
+}
+
+/* Error Text */
+
+.errorText {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-alert);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+.primaryButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 24px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: transform cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, box-shadow cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.3);
+}
+
+.primaryButton:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 8px 28px rgba(0, 102, 255, 0.4);
+}
+
+.primaryButton:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
+}
+
+/* Back Button */
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 48px;
+  padding: 4px 0;
+  transition: color 0.2s ease, transform cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+.backButton:hover {
+  color: var(--color-primary);
+  transform: translateX(-2px);
+}
+
+/* Forgot Password Link */
+
+.forgotLink {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: right;
+  padding: 0;
+  margin-top: -8px;
+  margin-left: auto;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.forgotLink:hover {
+  opacity: 0.8;
+}
+
+/* Link Styling */
+
+.link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+  transition: transform cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+/* ============================================================
+   Divider
+   ============================================================ */
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(0, 102, 255, 0.12);
+}
+
+.dividerText {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Social Buttons
+   ============================================================ */
+
+.socialButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.socialButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 102, 255, 0.12);
+  border-radius: 12px;
+  cursor: pointer;
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  transition: transform cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, box-shadow cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, border-color cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+.socialButton:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.12);
+  border-color: rgba(0, 102, 255, 0.25);
+}
+
+.socialButton:active {
+  transform: scale(0.97);
+}
+
+.socialIcon {
+  font-size: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Sign Up Link */
+
+.bottomLink {
+  text-align: center;
+  margin-top: 40px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.bottomLink span {
+  color: var(--color-text-secondary);
+}
+
+.arrow {
+  color: var(--color-primary);
+  margin-left: 4px;
+  display: inline-block;
+  transition: transform cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+.bottomLink:hover .link {
+  opacity: 0.8;
+}
+
+.bottomLink:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   Success State
+   ============================================================ */
+
+.successState {
+  text-align: center;
+  padding-top: 12px;
+}
+
+.successIcon {
+  margin-bottom: 20px;
+  color: #0a8a0a;
+}
+
+.successIcon svg {
+  animation: successPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes successPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.successHeading {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+}
+
+.successText {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.successText strong {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.successButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, box-shadow cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, background cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+.successButton:hover {
+  transform: translateY(-4px) scale(1.01);
+  background: rgba(0, 102, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.12);
+}
+
+.successButton:active {
+  transform: scale(0.97);
+}
